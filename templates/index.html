@@ -26,17 +26,24 @@
             </div>
             <hr>
             {% for image_name in image_names %}
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <div class="col-lg-3">
                 <figure>
                 <img class="img-responsive" src=" {{url_for('send_image', filename=image_name)}}">
 
                 <!-- tag and discription of image -->
+                <b>Title: </b>{{title[image_names.index(image_name)]}}
+                <hr>
                 <b>Description: </b>{{description[image_names.index(image_name)]}}
                 <hr>
                 <b>Tags: </b>{{tags[image_names.index(image_name)]}}
                 
-
+                <hr>
                 <!-- various forms -->
+                <form action="/" method="post">
+                    <input type="text" name = "{{image_name}}" autocomplete="off" placeholder="Title">
+                    <button type="submit" name = "submit_btn" value = "title">+</button>
+                </form>
+
                 <form action="/" method="post">
                     <input type="text" name = "{{image_name}}" autocomplete="off" placeholder="Image Description">
                     <button type="submit" name = "submit_btn" value = "update">Update</button>
