@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Image_Render</title>
+
+     <!-- BOOTSTRAP CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
     integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- custom style -->
     <style>
     .img-responsive{
         width: 700px;
@@ -13,9 +17,10 @@
     }
 </style>
 </head>
-<body  >
+
+
+<body >
     <h1 style ="text-align: center;">Image Tagging and Retrival</h1>
-    <!-- <img src="images/photo1.jpg" alt="painting" width = 200px> -->
 
     <div class="container">
 
@@ -25,12 +30,14 @@
                 <h1 class="page-header">Image Gallery</h1>
             </div>
             <hr>
+
+            <!-- looping through each images in the list -->
             {% for image_name in image_names %}
             <div class="col-lg-3">
                 <figure>
                 <img class="img-responsive" src=" {{url_for('send_image', filename=image_name)}}">
 
-                <!-- tag and discription of image -->
+                <!--printing the title,tag and discription of particular image below it  by getting info from the passed lists from server -->
                 <b>Title: </b>{{title[image_names.index(image_name)]}}
                 <hr>
                 <b>Description: </b>{{description[image_names.index(image_name)]}}
@@ -38,7 +45,10 @@
                 <b>Tags: </b>{{tags[image_names.index(image_name)]}}
                 
                 <hr>
+
                 <!-- various forms -->
+                <!-- we are giving the "name attribute" = image_name so that we can recognise later which image form is filled  -->
+                <!-- name attribute of button differentiates which button is pressed among multiple buttons. -->
                 <form action="/" method="post">
                     <input type="text" name = "{{image_name}}" autocomplete="off" placeholder="Title">
                     <button type="submit" name = "submit_btn" value = "title">+</button>
@@ -62,6 +72,7 @@
                 </figure>
             </div>
             {% endfor %}
+            
         </div>
 
 
