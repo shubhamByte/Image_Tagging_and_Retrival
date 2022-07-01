@@ -76,8 +76,8 @@
                 {% for image_name in image_names %}
                 <div class="col">
                     <div class="card shadow-sm h-100">
-                          <image class="bd-placeholder-img card-img-top" width="100%" height="225" id = "{{image_name}}" class="bd-placeholder-img card-img-top"
-                              src ="{{url_for('send_image', filename=image_name)}}" width="100%" height="225" alt="{{title[image_names.index(image_name)][0]}}"/>
+                          <image class="bd-placeholder-img card-img-top" width = "40%" id = "{{image_name}}" class="bd-placeholder-img card-img-top"
+                              src ="{{url_for('send_image', filename=image_name)}}"   alt="{{title[image_names.index(image_name)][0]}}"/>
     
     
                         <div class="card-body">
@@ -92,9 +92,9 @@
                           <br />
                             <p class="card-text"><strong>Title </strong> : {{title[image_names.index(image_name)][0]}} </p>
                             <p class="card-text"><strong>Description</strong> : {{description[image_names.index(image_name)][0]}} </p>
-                            <p class="card-text"><strong>Tags</strong> : {{tags[image_names.index(image_name)]}} </p>
+                            <p class="card-text"><strong>Tags</strong> : {{(';   #').join(tags[image_names.index(image_name)])}} </p>
     
-                            <form action="/" method="post">
+                            <!-- <form action="/" method="post">
                                 <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Title">
                                 <button type="submit" name="submit_btn" value="title">+</button>
                             </form>
@@ -112,7 +112,7 @@
                             <form action="/" method="post">
                                 <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Remove Tag">
                                 <button type="submit" name="submit_btn" value="remove">Remove</button>
-                            </form>
+                            </form> -->
                             
 
                         </div>
