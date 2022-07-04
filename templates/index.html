@@ -14,6 +14,9 @@
      <!-- Jquery cdn -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+      <!-- font awesome -->
+     <script src="https://kit.fontawesome.com/e272b26c23.js" crossorigin="anonymous"></script>
+
 </head>
 
 
@@ -22,15 +25,18 @@
         <div class="collapse bg-dark" id="navbarHeader">
           <div class="container">
             <div class="row">
+
               <div class="col-sm-8 col-md-7 py-4">
                 <h4 class="text-white">About</h4>
               </div>
               <div class="col-sm-4 offset-md-1 py-4">
-                <h4 class="text-white">Contact</h4>
+                <h4 class="text-white">Contacts</h4>
                 <ul class="list-unstyled">
-                  <li><a href="#" class="text-white">Twitter</a></li>
-                  <li><a href="#" class="text-white">Facebook</a></li>
-                  <li><a href="#" class="text-white">Email</a></li>
+                  <li><a href="#" class="text-white"><i style = "font-size: 200%; margin: 0 20px 0 5px;"          class="fa-brands fa-github"></i></a>  
+                       <a href="#" class="text-white"><i style = "font-size: 200%; margin: 0 20px 0 5px;" class="fa-brands fa-linkedin"></i></a>
+                       <a href="#" class="text-white"><i style = "font-size: 200%; margin: 0 20px 0 5px;" class="fa-regular fa-envelope"></i></a>
+                  </li>
+
                 </ul>
               </div>
             </div>
@@ -47,6 +53,12 @@
               </svg>
               <strong>Images</strong>
             </a>
+
+            <form class="d-inline-flex navbar-right" role="search" style = "display: inline-block; text-align: right;">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
               aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -75,7 +87,7 @@
     
                 {% for image_name in image_names %}
                 <div class="col">
-                    <div class="card shadow-sm h-100">
+                    <div class="card shadow p-3 mb-5 bg-body rounded h-80">
                           <image class="bd-placeholder-img card-img-top" width = "100%" id = "{{image_name}}" class="bd-placeholder-img card-img-top"
                               src ="{{url_for('send_image', filename=image_name)}}"   alt="{{title[image_names.index(image_name)][0]}}"/>
     
@@ -103,9 +115,9 @@
                                ">
                               {% for item in tags[image_names.index(image_name)] %}
                               
-                              <li style = "float: left;"><a class="tag" style = "background: rgb(173, 171, 171);
+                              <li style = "float: left;"><a class="tag" style = "background: rgb(236, 233, 233);
                                 border-radius: 8px 8px 8px 8px;
-                                color: rgb(255, 255, 255);
+                                color: rgb(26, 14, 41);
                                 display: inline-block;
                                 
                                 line-height: 26px;
@@ -114,7 +126,7 @@
                                 margin: 0 7px 7px 0;
                                 text-decoration: none;
                                 content: '';
-                                ">{{item}}</a></li>
+                                "><i class="fa-solid fa-tag"></i>     {{item}}</a></li>
 
                               {%endfor%}
                              </ul>

@@ -8,7 +8,6 @@
   
   
   var vBtn = document.querySelectorAll("#view_btn");
-  console.log(vBtn);
   for(var i = 0; i < vBtn.length; i++)
   {
     vBtn[i].onclick = function(){
