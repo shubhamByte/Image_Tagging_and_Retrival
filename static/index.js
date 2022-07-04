@@ -26,3 +26,22 @@
   span.onclick = function() { 
     modal.style.display = "none";
   }
+
+
+  
+  var modalEdit = document.getElementById("editOption");
+
+  var eBtn = document.querySelectorAll("#edit_btn");
+  for(var i = 0; i < eBtn.length; i++)
+  {
+    eBtn[i].onclick = function(){
+      modalEdit.style.display = "block";
+    }
+  }
+
+  var span = document.getElementsByClassName("close")[1];
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() { 
+    modalEdit.style.display = "none";
+  }
