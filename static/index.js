@@ -28,13 +28,6 @@
   
   // -----------------------------------------------------------------------------------------------
 
-
-  // var modalEdit = document.querySelectorAll("#editOption");
-  // console.log(modalEdit);
-  // var captionEdit = document.getElementById("editCaption");
-  // var imgEdit = document.getElementById("imgSource");
-
-  
   var eBtn = document.querySelectorAll("#edit_btn");
   for(var i = 0; i < eBtn.length; i++)
   {
@@ -44,37 +37,11 @@
       var modalEdit = document.getElementById(completeId);
       modalEdit.style.display = "block";
 
-      // var imageId = "editImg"+this.name;
-      // var imgEdit = document.getElementById(imageId);
-      // imgEdit.src = 
-      
       var crossId = "closeEdit" + this.name;
       var cross = document.getElementById(crossId);
       cross.onclick = function(){
         modalEdit.style.display = "none";
       }
-
-
-      // var parentChild = "#"+ completeId + " .closeEdit";
-      // console.log (parentChild);
-      // var cross = document.querySelector(parentChild);
-      // console.log(cross);
-      // cross.onclick = function(){
-      //   modalEdit.style.display = "none";
-      // }
-
     }
-    // var span2 = document.getElementsByClassName("closeEdit")[i];
-    // console.log(span2);
-    // span2.onclick = function() { 
-    //   modalEdit.style.display = "none";
-    // }
   }
 
-  // var span2 = document.querySelector( .closeEdit);
-  // // console.log(span2);
-  
-  // // When the user clicks on <span> (x), close the modal
-  // span2.onclick = function() { 
-  //   globalCross.style.display = "none";
-  // }
