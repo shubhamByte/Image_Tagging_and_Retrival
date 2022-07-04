@@ -26,8 +26,7 @@
   span.onclick = function() { 
     modal.style.display = "none";
   }
-
-
+  
   
   var modalEdit = document.getElementById("editOption");
 
