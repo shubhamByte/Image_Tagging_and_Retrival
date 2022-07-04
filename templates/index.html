@@ -16,6 +16,7 @@
 
       <!-- font awesome -->
      <script src="https://kit.fontawesome.com/e272b26c23.js" crossorigin="anonymous"></script>
+    
 
 </head>
 
@@ -83,7 +84,7 @@
     <div class="album py-5 bg-light">
         <div class="container" id = "gallery">
     
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" data-masonry='{"percentPosition": true }' >
     
                 {% for image_name in image_names %}
                 <div class="col">
@@ -98,7 +99,7 @@
 
                               <button id = "view_btn" name = "{{image_name}}" type="button" class="btn btn-sm btn-outline-secondary ">Zoom</button>
                               
-                              <button type="button" id = "edit_btn" class="btn btn-sm btn-outline-secondary">Edit</button>
+                              <button type="button" name = "{{image_name}}" id = "edit_btn" class="btn btn-sm btn-outline-secondary">Edit</button>
                             </div>
                           </div>
                           <br />
@@ -131,13 +132,42 @@
                               {%endfor%}
                              </ul>
                             </div>
-                            
-                            <!-- this is the link for styleing tag -->
-                             <!-- https://codepen.io/wbeeftink/pen/AJjVZQ?editors=1100  -->
-
-
-                            
-
+                            <!-- --------------------------------------------------------------------------------------------- -->
+                            <div id="horizantalCard" >
+                            <div id="horizantalCard2"  class="card mb-3" style="display:none">
+                              <div class="row g-0">
+                                <div class="col-md-4">
+                                  <img id="imgSource" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+              
+                                    <!-- various forms -->
+                                    <form action="/" method="post">
+                                      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Title">
+                                      <button type="submit" name="submit_btn" value="title">+</button>
+                                    </form>
+              
+                                    <form action="/" method="post">
+                                      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Image Description">
+                                      <button type="submit" name="submit_btn" value="update">Update</button>
+                                    </form>
+              
+                                    <form action="/" method="post">
+                                      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Add Tag">
+                                      <button type="submit" name="submit_btn" value="add">Add</button>
+                                    </form>
+                                    <form action="/" method="post">
+                                      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Remove Tag">
+                                      <button type="submit" name="submit_btn" value="remove">Remove</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- -------------------------------------------------------------------------------------------------------- -->
                         </div>
 
                     </div>
@@ -187,27 +217,7 @@
 
 <div id="editOption" class="modal">
   <span class="close">&times;</span>
-  <div id="caption">
-    <form action="/" method="post">
-      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Title">
-      <button type="submit" name="submit_btn" value="title">+</button>
-  </form>
-
-  <form action="/" method="post">
-      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Image Description">
-      <button type="submit" name="submit_btn" value="update">Update</button>
-  </form>
-
-  <form action="/" method="post">
-      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Add Tag">
-      <button type="submit" name="submit_btn" value="add">Add</button>
-  </form>
-
-  <form action="/" method="post">
-      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Remove Tag">
-      <button type="submit" name="submit_btn" value="remove">Remove</button>
-  </form>  
-  </div>
+  <div id="editCaption"></div>
 </div>
 
 
@@ -215,7 +225,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
 crossorigin="anonymous"></script> 
-
 <script src="{{ url_for('static',filename='index.js') }}"> </script>
 <script src="https://kit.fontawesome.com/e272b26c23.js" crossorigin="anonymous"></script>
 </body>
