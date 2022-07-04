@@ -133,40 +133,37 @@
                              </ul>
                             </div>
                             <!-- --------------------------------------------------------------------------------------------- -->
-                            <div id="horizantalCard" >
-                            <div id="horizantalCard2"  class="card mb-3" style="display:none">
-                              <div class="row g-0">
-                                <div class="col-md-4">
-                                  <img id="imgSource" class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-              
-                                    <!-- various forms -->
-                                    <form action="/" method="post">
-                                      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Title">
-                                      <button type="submit" name="submit_btn" value="title">+</button>
-                                    </form>
-              
-                                    <form action="/" method="post">
-                                      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Image Description">
-                                      <button type="submit" name="submit_btn" value="update">Update</button>
-                                    </form>
-              
-                                    <form action="/" method="post">
-                                      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Add Tag">
-                                      <button type="submit" name="submit_btn" value="add">Add</button>
-                                    </form>
-                                    <form action="/" method="post">
-                                      <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Remove Tag">
-                                      <button type="submit" name="submit_btn" value="remove">Remove</button>
-                                    </form>
-                                  </div>
-                                </div>
+
+                            <div id="editOption{{image_name}}" class="modal">
+                              <span id="closeEdit{{image_name}}" class = "closeEdit">&times;</span>
+                              <div id="editCaption">
+
+                              <!-- various forms -->
+                              <form action="/" method="post">
+                                <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Title">
+                                <button type="submit" name="submit_btn" value="title">+</button>
+                              </form>
+        
+                              <form action="/" method="post">
+                                <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Image Description">
+                                <button type="submit" name="submit_btn" value="update">Update</button>
+                              </form>
+        
+                              <form action="/" method="post">
+                                <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Add Tag">
+                                <button type="submit" name="submit_btn" value="add">Add</button>
+                              </form>
+                              <form action="/" method="post">
+                                <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Remove Tag">
+                                <button type="submit" name="submit_btn" value="remove">Remove</button>
+                              </form>
+
+
                               </div>
+
                             </div>
-                          </div>
+                                    
+
                           <!-- -------------------------------------------------------------------------------------------------------- -->
                         </div>
 
@@ -215,10 +212,7 @@
   <div id="caption"></div>
 </div>
 
-<div id="editOption" class="modal">
-  <span class="close">&times;</span>
-  <div id="editCaption"></div>
-</div>
+
 
 
 

@@ -26,31 +26,53 @@
     modal.style.display = "none";
   }
   
-  
-  var modalEdit = document.getElementById("editOption");
-  var captionEdit = document.getElementById("editCaption");
-  var horizantalCard = document.getElementById("horizantalCard");
-  var imgEdit = document.getElementById("imgSource");
+  // -----------------------------------------------------------------------------------------------
 
+
+  // var modalEdit = document.querySelectorAll("#editOption");
+  // console.log(modalEdit);
+  // var captionEdit = document.getElementById("editCaption");
+  // var imgEdit = document.getElementById("imgSource");
+
+  
   var eBtn = document.querySelectorAll("#edit_btn");
   for(var i = 0; i < eBtn.length; i++)
   {
     eBtn[i].onclick = function(){
-      var img = document.getElementById(this.name);
-      imgEdit.src = img.src;
+      // var img = document.getElementById(this.name);
+      // imgEdit.src = img.src;
+
+      var completeId = "editOption"+this.name;
+      var modalEdit = document.getElementById(completeId);
       modalEdit.style.display = "block";
-      var horizantalCard2 = document.getElementById("horizantalCard2");
-      horizantalCard2.style.display = "block";
-      captionEdit.innerHTML = horizantalCard.innerHTML;
-      console.log(captionEdit.innerHTML);
+      
+      var crossId = "closeEdit" + this.name;
+      var cross = document.getElementById(crossId);
+      cross.onclick = function(){
+        modalEdit.style.display = "none";
+      }
+
+
+      // var parentChild = "#"+ completeId + " .closeEdit";
+      // console.log (parentChild);
+      // var cross = document.querySelector(parentChild);
+      // console.log(cross);
+      // cross.onclick = function(){
+      //   modalEdit.style.display = "none";
+      // }
+
     }
+    // var span2 = document.getElementsByClassName("closeEdit")[i];
+    // console.log(span2);
+    // span2.onclick = function() { 
+    //   modalEdit.style.display = "none";
+    // }
   }
 
-  var span = document.getElementsByClassName("close")[1];
+  // var span2 = document.querySelector( .closeEdit);
+  // // console.log(span2);
   
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() { 
-    modalEdit.style.display = "none";
-    var horizantalCard2 = document.getElementById("horizantalCard2");
-    horizantalCard2.style.display = "none";
-  }
+  // // When the user clicks on <span> (x), close the modal
+  // span2.onclick = function() { 
+  //   globalCross.style.display = "none";
+  // }
