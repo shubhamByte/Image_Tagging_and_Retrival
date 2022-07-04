@@ -39,12 +39,14 @@
   for(var i = 0; i < eBtn.length; i++)
   {
     eBtn[i].onclick = function(){
-      // var img = document.getElementById(this.name);
-      // imgEdit.src = img.src;
 
       var completeId = "editOption"+this.name;
       var modalEdit = document.getElementById(completeId);
       modalEdit.style.display = "block";
+
+      // var imageId = "editImg"+this.name;
+      // var imgEdit = document.getElementById(imageId);
+      // imgEdit.src = 
       
       var crossId = "closeEdit" + this.name;
       var cross = document.getElementById(crossId);

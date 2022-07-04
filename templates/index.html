@@ -1,122 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>ITR</title>
+  <meta charset="UTF-8">
+  <title>ITR</title>
 
-     <!-- BOOTSTRAP CDN -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- BOOTSTRAP CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-     <!-- custom css  -->
-     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+  <!-- custom css  -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
 
-     <!-- Jquery cdn -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Jquery cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-      <!-- font awesome -->
-     <script src="https://kit.fontawesome.com/e272b26c23.js" crossorigin="anonymous"></script>
-    
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/e272b26c23.js" crossorigin="anonymous"></script>
+
 
 </head>
 
 
-<body >
-    <header>
-        <div class="collapse bg-dark" id="navbarHeader">
-          <div class="container">
-            <div class="row">
+<body>
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
 
-              <div class="col-sm-8 col-md-7 py-4">
-                <h4 class="text-white">About</h4>
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Contacts</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white"><i style="font-size: 200%; margin: 0 20px 0 5px;"
+                    class="fa-brands fa-github"></i></a>
+                <a href="#" class="text-white"><i style="font-size: 200%; margin: 0 20px 0 5px;"
+                    class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="text-white"><i style="font-size: 200%; margin: 0 20px 0 5px;"
+                    class="fa-regular fa-envelope"></i></a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+            viewBox="0 0 24 24">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+          <strong>Images</strong>
+        </a>
+
+        <form class="d-inline-flex navbar-right" role="search" style="display: inline-block; text-align: right;"
+          action="/" method="post">
+          <input class="form-control me-2" name="queryByTag" type="text" placeholder="Search" aria-label="Search"
+            autocomplete="off">
+          <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Image Tagging and Retrival</h1>
+        <p class="lead text-muted">Add Tags and Description to the metadata of the images.</p>
+        <p>
+          <a href="#gallery" class="btn btn-primary my-2">Go to Gallery</a>
+          <a href="#query" class="btn btn-secondary my-2">Go to Query</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container" id="gallery">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" data-masonry='{"percentPosition": true }'>
+
+        {% for image_name in image_names %}
+        <div class="col">
+          <div class="card shadow p-3 mb-5 bg-body rounded h-80">
+            <image class="bd-placeholder-img card-img-top" width="100%" id="{{image_name}}"
+              class="bd-placeholder-img card-img-top" src="{{url_for('send_image', filename=image_name)}}"
+              alt="{{title[image_names.index(image_name)][0]}}" />
+
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                  <button id="view_btn" name="{{image_name}}" type="button"
+                    class="btn btn-sm btn-outline-secondary ">Zoom</button>
+
+                  <button type="button" name="{{image_name}}" id="edit_btn"
+                    class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
               </div>
-              <div class="col-sm-4 offset-md-1 py-4">
-                <h4 class="text-white">Contacts</h4>
-                <ul class="list-unstyled">
-                  <li><a href="#" class="text-white"><i style = "font-size: 200%; margin: 0 20px 0 5px;"          class="fa-brands fa-github"></i></a>  
-                       <a href="#" class="text-white"><i style = "font-size: 200%; margin: 0 20px 0 5px;" class="fa-brands fa-linkedin"></i></a>
-                       <a href="#" class="text-white"><i style = "font-size: 200%; margin: 0 20px 0 5px;" class="fa-regular fa-envelope"></i></a>
-                  </li>
+              <br />
+              <p class="card-text"><strong>Title </strong> : {{title[image_names.index(image_name)][0]}} </p>
+              <p class="card-text"><strong>Description</strong> : {{description[image_names.index(image_name)][0]}} </p>
+              <p class="card-text"><strong>Tags</strong> : </p>
+              <div id=tagList>
 
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-          <div class="container">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
-                viewBox="0 0 24 24">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                <circle cx="12" cy="13" r="4" />
-              </svg>
-              <strong>Images</strong>
-            </a>
-
-            <form class="d-inline-flex navbar-right" role="search" style = "display: inline-block; text-align: right;" action="/" method="post">
-              <input class="form-control me-2" name="queryByTag" type="text" placeholder="Search" aria-label="Search" autocomplete="off">
-              <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
-              aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
-        </div>
-    </header>
-
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Image Tagging and Retrival</h1>
-            <p class="lead text-muted">Add Tags and Description to the metadata of the images.</p>
-            <p>
-              <a href="#gallery" class="btn btn-primary my-2">Go to Gallery</a>
-              <a href="#query" class="btn btn-secondary my-2">Go to Query</a>
-            </p>
-          </div>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container" id = "gallery">
-    
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" data-masonry='{"percentPosition": true }' >
-    
-                {% for image_name in image_names %}
-                <div class="col">
-                    <div class="card shadow p-3 mb-5 bg-body rounded h-80">
-                          <image class="bd-placeholder-img card-img-top" width = "100%" id = "{{image_name}}" class="bd-placeholder-img card-img-top"
-                              src ="{{url_for('send_image', filename=image_name)}}"   alt="{{title[image_names.index(image_name)][0]}}"/>
-    
-                      
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-
-                              <button id = "view_btn" name = "{{image_name}}" type="button" class="btn btn-sm btn-outline-secondary ">Zoom</button>
-                              
-                              <button type="button" name = "{{image_name}}" id = "edit_btn" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                          </div>
-                          <br />
-                            <p class="card-text"><strong>Title </strong> : {{title[image_names.index(image_name)][0]}} </p>
-                            <p class="card-text"><strong>Description</strong> : {{description[image_names.index(image_name)][0]}} </p>
-                            <p class="card-text"><strong>Tags</strong> : </p>
-                              <div id = tagList>
-                              
-                              <ul class="tags" style = "
+                <ul class="tags" style="
                                 list-style: none;
                                 margin: 0;
                                 overflow: hidden; 
                                 padding: 0;
                                ">
-                              {% for item in tags[image_names.index(image_name)] %}
-                              
-                              <li style = "float: left;"><a class="tag" style = "background: rgb(236, 233, 233);
+                  {% for item in tags[image_names.index(image_name)] %}
+
+                  <li style="float: left;"><a class="tag" style="background: rgb(236, 233, 233);
                                 border-radius: 8px 8px 8px 8px;
                                 color: rgb(26, 14, 41);
                                 display: inline-block;
@@ -127,99 +136,116 @@
                                 margin: 0 7px 7px 0;
                                 text-decoration: none;
                                 content: '';
-                                "><i class="fa-solid fa-tag"></i>     {{item}}</a></li>
+                                "><i class="fa-solid fa-tag"></i> {{item}}</a></li>
 
-                              {%endfor%}
-                             </ul>
-                            </div>
-                            <!-- --------------------------------------------------------------------------------------------- -->
-
-                            <div id="editOption{{image_name}}" class="modal">
-                              <span id="closeEdit{{image_name}}" class = "closeEdit">&times;</span>
-                              <div id="editCaption">
-
-                              <!-- various forms -->
-                              <form action="/" method="post">
-                                <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Title">
-                                <button type="submit" name="submit_btn" value="title">+</button>
-                              </form>
-        
-                              <form action="/" method="post">
-                                <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Image Description">
-                                <button type="submit" name="submit_btn" value="update">Update</button>
-                              </form>
-        
-                              <form action="/" method="post">
-                                <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Add Tag">
-                                <button type="submit" name="submit_btn" value="add">Add</button>
-                              </form>
-                              <form action="/" method="post">
-                                <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Remove Tag">
-                                <button type="submit" name="submit_btn" value="remove">Remove</button>
-                              </form>
+                  {%endfor%}
+                </ul>
+              </div>
+              <!-- --------------------------------------------------------------------------------------------- -->
 
 
-                              </div>
+              <div id="editOption{{image_name}}" class="modal">
+                <span id="closeEdit{{image_name}}" class="closeEdit">&times;</span>
+                <div id="editCaption">
 
-                            </div>
-                                    
+                  <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img id="editImg{{image_name}}" src = "{{url_for('send_image', filename=image_name)}}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
 
-                          <!-- -------------------------------------------------------------------------------------------------------- -->
+                          <!-- various forms -->
+                          <form action="/" method="post">
+                            <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Title">
+                            <button type="submit" name="submit_btn" value="title">+</button>
+                          </form>
+    
+                          <form action="/" method="post">
+                            <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Image Description">
+                            <button type="submit" name="submit_btn" value="update">Update</button>
+                          </form>
+    
+                          <form action="/" method="post">
+                            <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Add Tag">
+                            <button type="submit" name="submit_btn" value="add">Add</button>
+                          </form>
+                          <form action="/" method="post">
+                            <input type="text" name="{{image_name}}" autocomplete="off" placeholder="Remove Tag">
+                            <button type="submit" name="submit_btn" value="remove">Remove</button>
+                          </form>
+                          
                         </div>
-
+                      </div>
                     </div>
+                  </div>
+
                 </div>
-                {% endfor %}
+
+              </div>
+
+
+              <!-- -------------------------------------------------------------------------------------------------------- -->
             </div>
+
+          </div>
         </div>
+        {% endfor %}
+      </div>
     </div>
+  </div>
 
 
 
-    <!-- ------------------------------------------------------------------ -->
-    <!-- Form code for query -->
-    <div id = "query" style = "text-align: center;">
-        <br> <br> <br> <br>
-        <h1 class = "fw-light">Quering Images</h1>
-        <br> <br> 
-        <center>
-          <form class="d-inline-flex" role="search" style = "display: inline-block; text-align: right;" action="/" method="post">
-            <input class="form-control me-2" name="queryByTag" type="text" placeholder="Search" aria-label="Search" autocomplete="off">
-            <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-          </form>
-      </center>
+  <!-- ------------------------------------------------------------------ -->
+  <!-- Form code for query -->
+  <div id="query" style="text-align: center;">
+    <br> <br> <br> <br>
+    <h1 class="fw-light">Quering Images</h1>
+    <br> <br>
+    <center>
+      <form class="d-inline-flex" role="search" style="display: inline-block; text-align: right;" action="/"
+        method="post">
+        <input class="form-control me-2" name="queryByTag" type="text" placeholder="Search" aria-label="Search"
+          autocomplete="off">
+        <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </center>
 
-        <br> <br> <br> <br>
-    </div>
+    <br> <br> <br> <br>
+  </div>
 
-    <!-- -------------------------------------------------------------------- -->
-</div>
+  <!-- -------------------------------------------------------------------- -->
+  </div>
 
-<footer class="text-muted py-5" style="text-align:center; background-color: rgb(235, 235, 235);">
+  <footer class="text-muted py-5" style="text-align:center; background-color: rgb(235, 235, 235);">
     <div class="container">
       <p class="float-end mb-1">
-        <a href="#"><i class="fa-regular  fa-circle-up" style = "font-size: 250%;"></i></a>
+        <a href="#"><i class="fa-regular  fa-circle-up" style="font-size: 250%;"></i></a>
       </p>
       <p class="mb-1">© IIT JODHPUR DESIGN CREDIT</p>
 
     </div>
-</footer>
+  </footer>
 
-<!-- The Zoom image modal -->
-<div id="myModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="img01">
-  <div id="caption"></div>
-</div>
-
-
+  <!-- The Zoom image modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-crossorigin="anonymous"></script> 
-<script src="{{ url_for('static',filename='index.js') }}"> </script>
-<script src="https://kit.fontawesome.com/e272b26c23.js" crossorigin="anonymous"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <script src="{{ url_for('static',filename='index.js') }}"> </script>
+  <script src="https://kit.fontawesome.com/e272b26c23.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
