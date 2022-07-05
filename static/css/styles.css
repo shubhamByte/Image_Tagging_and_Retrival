@@ -70,6 +70,24 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+  /* The Close Button */
+  .closeEdit{
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .closeEdit:hover,
+  .closeEdit:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
   
   /* 100% Image Width on Smaller Screens */
   @media only screen and (max-width: 700px){
@@ -82,4 +100,8 @@ p strong {
   color:rgb(55, 19, 92);
 }
 
+
+.grid-item {
+  width: calc(33% - 10px);
+}
 

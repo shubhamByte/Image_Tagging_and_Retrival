@@ -1,4 +1,3 @@
-
   // Get the modal
   var modal = document.getElementById("myModal");
   var modalImg = document.getElementById("img01");
@@ -27,20 +26,37 @@
     modal.style.display = "none";
   }
   
-  
-  var modalEdit = document.getElementById("editOption");
+  // -----------------------------------------------------------------------------------------------
 
   var eBtn = document.querySelectorAll("#edit_btn");
   for(var i = 0; i < eBtn.length; i++)
   {
     eBtn[i].onclick = function(){
+
+      var completeId = "editOption"+this.name;
+      var modalEdit = document.getElementById(completeId);
       modalEdit.style.display = "block";
+
+      var crossId = "closeEdit" + this.name;
+      var cross = document.getElementById(crossId);
+      cross.onclick = function(){
+        modalEdit.style.display = "none";
+      }
     }
   }
 
-  var span = document.getElementsByClassName("close")[1];
-  
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() { 
-    modalEdit.style.display = "none";
-  }
+// external js: masonry.pkgd.js, imagesloaded.pkgd.js
+
+// init Masonry
+var grid = document.querySelector('.grid');
+console.log(grid)
+var msnry = new Masonry( grid, {
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-item',
+  gutter: 10
+});
+console.log(msnry)
+imagesLoaded( grid ).on( 'progress', function() {
+  // layout Masonry after each image loads
+  msnry.layout();
+});
