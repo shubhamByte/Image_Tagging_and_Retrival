@@ -9,57 +9,9 @@ app = Flask(__name__)
 def send_image(filename):
     return send_from_directory("images", filename)
 
-
-# # making list of names of the images in the directory
-# imgList = os.listdir('./images')
-
-# # these three lists will be send to the html document. It will contain information of each image.
-# tags = []                   # list of lists
-# description = []            # list of strings
-# title = []                  # list of strings
-
-# # looping through each image in the list and updating the above three lists according to it
-# for imgName in imgList:
-
-#     # creating path
-#     img_path = "images/"+imgName
-
-#     # getting the iptc data of the image using module
-#     imgIPTC_info = IPTCInfo(img_path, force="True")
-
-
-#     # we are first geting the keyword list using our module then decoding it using utf-8 then appending it to the main tags list.  
-
-#     # Tags
-#     imgIptcKeywordDecoded = []
-#     for keywords in imgIPTC_info['keywords']:
-#         imgIptcKeywordDecoded.append(keywords.decode('utf-8'))
-#     tags.append(imgIptcKeywordDecoded)
-
-#     # Description
-#     imgIptcDescrpitionDecoded = []
-#     if (imgIPTC_info['caption/abstract'] == None):   # using if else to check when no description is present.
-#         imgIptcDescrpitionDecoded.append("Description not present")
-#     else:
-#         imgIptcDescrpitionDecoded.append(
-#             imgIPTC_info['caption/abstract'].decode('utf-8'))
-#     description.append(imgIptcDescrpitionDecoded)
-
-#     # Title
-#     imgIptcTitleDecoded = []
-#     if (imgIPTC_info['object Name'] == None):       # using if else to check when no title is present.
-#         imgIptcTitleDecoded.append("Title not Present")
-#     else:
-#         imgIptcTitleDecoded.append(
-#             imgIPTC_info['object Name'].decode('utf-8'))
-#     title.append(imgIptcTitleDecoded)
-
-
-# function to render the main page. it gets iptc data but not change any of it.
-@app.route('/', methods=['GET'])
-def get_gallery():
+def extractAndUpdate():
     
-# making list of names of the images in the directory
+    # making list of names of the images in the directory
     imgList = os.listdir('./images')
 
     # these three lists will be send to the html document. It will contain information of each image.
@@ -103,6 +55,20 @@ def get_gallery():
                 imgIPTC_info['object Name'].decode('utf-8'))
         title.append(imgIptcTitleDecoded)
 
+
+    return title,description,tags
+
+
+# function to render the main page. it gets iptc data but not change any of it.
+@app.route('/', methods=['GET'])
+def get_gallery():
+    
+    
+    # making list of names of the images in the directory
+    imgList = os.listdir('./images')
+
+    title,description,tags = extractAndUpdate()
+
     # rendering the html by passing the index.html and the above mentioned list
     return render_template("index.html", image_names=imgList, description=description, tags=tags, title=title)
 
@@ -122,6 +88,7 @@ def get_data():
         titleResult = []
         descriptionResult = []
         tagsResult = []
+        title,description,tags=extractAndUpdate()
         for resultImg in resultImages:
             titleResult.append(title[imgList.index(resultImg)])
             descriptionResult.append(description[imgList.index(resultImg)])
