@@ -101,3 +101,7 @@ p strong {
 }
 
 
+.grid-item {
+  width: calc(33% - 10px);
+}
+
