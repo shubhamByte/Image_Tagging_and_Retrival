@@ -94,9 +94,9 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 grid">
 
         {% for image_name in image_names %}
-        <div class="col grid-item">
-          <div class="card shadow p-3 mb-5 bg-body rounded h-80">
-            <image class="bd-placeholder-img card-img-top" width="100%" id="{{image_name}}"
+        <div class="col grid-item ">
+          <div class="card shadow p-3 mb-5 bg-body rounded h-80 ">
+            <image class="bd-placeholder-img card-img-top zoomEffect" width="100%" id="{{image_name}}"
               class="bd-placeholder-img card-img-top" src="{{url_for('send_image', filename=image_name)}}"
               alt="{{title[image_names.index(image_name)][0]}}" />
             <div class="card-body">
@@ -124,7 +124,7 @@
                                ">
                   {% for item in tags[image_names.index(image_name)] %}
 
-                  <li style="float: left;"><a class="tag" style="background: rgb(236, 233, 233);
+                  <li style="float: left;"><a class="tag zoomEffect2" style="background: rgb(236, 233, 233);
                                 border-radius: 8px 8px 8px 8px;
                                 color: rgb(26, 14, 41);
                                 display: inline-block;
