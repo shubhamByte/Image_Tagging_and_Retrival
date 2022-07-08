@@ -82,12 +82,6 @@ FOR MAC -
 
     pip install flask python-dotenv
     
-
-*   Installing IPTCinfo -
-
-    pip install IPTCInfo3
-    
-
 *   Runing flask
 
     flask run
