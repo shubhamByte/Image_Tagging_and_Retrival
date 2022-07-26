@@ -1,4 +1,6 @@
+from ast import keyword
 import os
+from turtle import title
 from iptcinfo3 import IPTCInfo
 from flask import Flask, request, render_template, send_from_directory, jsonify, redirect, url_for
 
@@ -141,13 +143,29 @@ def get_data():
 # returns list of matched images
 def Query(imgList, queried_tag):
     resultImages = []
+    queried_tag=queried_tag.lower()
     for imgName in imgList:
         img_path = "images/"+imgName
 
         imgIPTC_info = IPTCInfo(img_path, force="True")
+        print(queried_tag)
+        keywordList = imgIPTC_info['keywords']
+        title = imgIPTC_info['object Name']
+        description = imgIPTC_info['caption/abstract']
+        print(description)
+        for tagWord in keywordList:
+            if (queried_tag in tagWord.lower().decode('utf-8')) :
+                if (imgName) not in resultImages:
+                    resultImages.append(imgName)
+        if(description!=None):
+            if (queried_tag in description.lower().decode('utf-8')):
+                if (imgName) not in resultImages:
+                    resultImages.append(imgName)
+        if(title!=None):
+            if (queried_tag in title.lower().decode('utf-8')):
+                if (imgName) not in resultImages:
+                    resultImages.append(imgName)
 
-        if (queried_tag.encode('utf-8') in imgIPTC_info['keywords']):
-            resultImages.append(imgName)
     return resultImages
 
 if __name__ == "__main__":
