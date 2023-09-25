@@ -94,6 +94,6 @@ Verify the deployment by navigating to your server address in your preferred bro
 
 *   press CTRL and click on the link displayed in the terminal .
 
-Deployed Link (Sample) -  https://nameless-eyrie-29156.herokuapp.com/
+Deployed Link (Sample) -  https://image-taggingandretrival.onrender.com
 
 #END
